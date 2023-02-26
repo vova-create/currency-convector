@@ -1,27 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <CurrencyConvector/>
+    <DisplayCurrentExchangeRatesBlock/>
+    <SlavaUkraine v-if="slavaUkrainePopup" @close="closeSlavaUkrainePopUp"/>
+  </div>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent } from "vue";
+import DisplayCurrentExchangeRatesBlock from "@/components/DisplayCurrentExchangeRatesBlock.vue";
+import SlavaUkraine from "@/components/SlavaUkraine.vue";
+import CurrencyConvector from "@/components/CurrencyConvector.vue";
+import "@/assets/sass/index.sass";
 
 export default defineComponent({
-  name: 'App',
+  name: "CurrencyConverter",
   components: {
-    HelloWorld
-  }
+    DisplayCurrentExchangeRatesBlock,
+    SlavaUkraine,
+    CurrencyConvector
+  },
+  data() {
+    return {
+      slavaUkrainePopup: true,
+    };
+  },
+  methods: {
+    closeSlavaUkrainePopUp() {
+      this.slavaUkrainePopup = false
+    },
+  },
 });
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
